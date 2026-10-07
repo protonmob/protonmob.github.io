@@ -9,7 +9,7 @@ import urllib.request
 from pathlib import Path
 from urllib.parse import urlsplit
 
-SITE = "https://www.protonmob.com"
+SITE = "https://protonmob.com"
 PAGES = {"index.html": "index.html", "support.html": "support/index.html"}
 RAW = Path(sys.argv[2])
 OUT = Path(sys.argv[1])
