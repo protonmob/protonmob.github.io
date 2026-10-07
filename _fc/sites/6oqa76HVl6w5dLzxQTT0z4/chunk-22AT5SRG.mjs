@@ -1,0 +1,2 @@
+import{f as e}from"./chunk-LPOYIOKO.mjs";e();function a(t,o){return{description:"Protonmob offers innovative mobile app solutions, combining advanced technology with user-friendly interfaces. We develop high-performance apps tailored to businesses and individuals, focused on efficiency and user experience.",robots:"max-image-preview:large",socialImage:"/_fc/assets/u9M9YLhCp17YbzFvWxqjy3mLA.png",title:"ProtonMob"}}export{a};
+//# sourceMappingURL=chunk-22AT5SRG.mjs.map
