@@ -1,0 +1,171 @@
+/* Shared stylesheet for every page on the site: the landing page and the prose
+ * pages (privacy, terms, support). One set of tokens and two typefaces so the
+ * site reads as one thing; prose pages use a single measured column.
+ *
+ * Keep --brand / --paper / --lav in step with the app's design system and with
+ * scripts/og_image.swift, so the share card sits on the same ground. */
+:root {
+  --brand: #4C6FFF;
+  --brand-deep: #3A50E0;
+  --brand-bright: #7189FF;
+  --brand-soft: #E7ECFF;
+
+  --ink: #14142B;
+  --ink2: #3A3A55;
+  --muted: #6B6B85;
+  --rule: rgba(20, 20, 43, 0.1);
+  --bg: #FFFFFF;
+  --paper: #F4F6FF;
+  --lav: #E9EDFC;
+
+  --note-bg: #FFF6E5;
+  --note-ink: #7A4B00;
+
+  --display: "Space Grotesk", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --body: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #F2F2F8;
+    --ink2: #C9C9DA;
+    --muted: #9A9AB2;
+    --rule: rgba(242, 242, 248, 0.12);
+    --bg: #0C0C18;
+    --paper: #15152A;
+    --lav: #1B1B32;
+    --brand-deep: #8FA2FF;
+    --brand-soft: #23264A;
+    --note-bg: #2E2410;
+    --note-ink: #F2D39A;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 16.5px;
+  line-height: 1.68;
+  -webkit-font-smoothing: antialiased;
+}
+.page { max-width: 47rem; margin: 0 auto; padding: 0 22px 96px; }
+a { color: var(--brand-deep); text-underline-offset: 2px; }
+a:hover { color: var(--brand); }
+img { max-width: 100%; height: auto; display: block; }
+
+/* ── Site bar, so a prose page is never a dead end ── */
+.sitebar {
+  position: sticky; top: 0; z-index: 20;
+  background: color-mix(in srgb, var(--bg) 84%, transparent);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-bottom: 1px solid var(--rule);
+}
+.sitebar .in {
+  max-width: 47rem; margin: 0 auto; padding: 0 22px;
+  height: 60px; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.sitebar .home {
+  display: flex; align-items: center; gap: 9px; text-decoration: none; color: var(--ink);
+  font-family: var(--display); font-weight: 700; font-size: 17px; letter-spacing: -.025em; white-space: nowrap;
+}
+.sitebar .home img { width: 26px; height: 26px; border-radius: 8px; border: 1px solid var(--rule); }
+.sitebar .right { display: flex; align-items: center; gap: 10px; }
+.sitebar .get {
+  font-family: var(--display); font-weight: 600; font-size: 14px;
+  background: var(--ink); color: var(--bg); text-decoration: none;
+  padding: 8px 15px; border-radius: 100px; white-space: nowrap;
+}
+.sitebar .get:hover { opacity: .88; color: var(--bg); }
+
+/* ── Language menu (index.html, driven by i18n.js) ── */
+.langsel { position: relative; }
+.langbtn {
+  display: inline-flex; align-items: center; gap: 7px; border: none; cursor: pointer;
+  background: var(--lav); color: var(--ink); border-radius: 100px; padding: 8px 13px;
+  font-family: var(--display); font-weight: 500; font-size: 14px;
+}
+.langmenu {
+  position: absolute; top: calc(100% + 8px); right: 0; display: none; z-index: 60;
+  background: var(--bg); border: 1px solid var(--rule); border-radius: 14px; padding: 6px; min-width: 160px;
+  box-shadow: 0 24px 56px -18px rgba(24, 28, 80, .4);
+}
+.langsel.open .langmenu { display: block; }
+.langmenu button {
+  display: block; width: 100%; text-align: left; border: none; background: none; cursor: pointer;
+  font-family: var(--display); font-size: 14.5px; color: var(--ink2); padding: 9px 12px; border-radius: 9px;
+}
+.langmenu button:hover { background: var(--lav); }
+.langmenu button.active { color: var(--brand-deep); background: var(--brand-soft); }
+
+/* ── Header ── */
+header.doc { border-bottom: 1px solid var(--rule); padding: 40px 0 22px; margin-bottom: 10px; }
+.eyebrow {
+  font-family: var(--display); font-weight: 600; font-size: 12.5px;
+  letter-spacing: .15em; text-transform: uppercase; color: var(--brand-deep);
+}
+h1, h2, h3 { font-family: var(--display); letter-spacing: -.025em; color: var(--ink); line-height: 1.12; }
+h1 { font-size: clamp(28px, 4.6vw, 40px); font-weight: 700; margin: 12px 0 8px; }
+h2 { font-size: 1.4rem; font-weight: 700; margin: 44px 0 10px; }
+h3 { font-size: 1.08rem; font-weight: 600; margin: 28px 0 6px; }
+.updated { color: var(--muted); font-size: 0.9rem; margin: 0; }
+p { margin: 12px 0; }
+ul, ol { margin: 12px 0; padding-left: 22px; }
+li { margin: 7px 0; }
+
+/* ── Callouts ── */
+.note {
+  background: var(--note-bg); color: var(--note-ink);
+  border-radius: 14px; padding: 15px 17px; margin: 26px 0; font-size: 0.94rem;
+}
+.note a { color: inherit; }
+
+/* ── Tables ── */
+.wrap { overflow-x: auto; margin: 16px 0; }
+table { border-collapse: collapse; width: 100%; font-size: 0.94rem; }
+th, td { text-align: left; vertical-align: top; padding: 11px 12px; border-bottom: 1px solid var(--rule); }
+th {
+  color: var(--muted); font-family: var(--display); font-weight: 600;
+  font-size: 12.5px; letter-spacing: .08em; text-transform: uppercase;
+}
+
+/* ── Landing ── */
+.hero { text-align: center; padding: 72px 0 40px; }
+.hero .icon { width: 112px; height: 112px; border-radius: 26px; margin: 0 auto 26px; border: 1px solid var(--rule);
+  box-shadow: 0 24px 48px -20px rgba(24, 28, 80, .35); }
+.hero h1 { font-size: clamp(36px, 7vw, 60px); margin: 10px 0 14px; }
+.hero h1 .hl { color: var(--brand-deep); }
+.hero .lead { font-size: 19px; color: var(--ink2); max-width: 34rem; margin: 0 auto 30px; text-wrap: pretty; }
+.features { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin: 30px 0 0; }
+.feature { background: var(--paper); border: 1px solid var(--rule); border-radius: 18px; padding: 20px 20px 16px; }
+.feature h3 { margin: 0 0 6px; }
+.feature p { margin: 0; color: var(--ink2); font-size: 0.95rem; }
+
+/* ── App Store badge ── */
+.appstore {
+  display: inline-flex; align-items: center; gap: 11px;
+  background: var(--ink); color: var(--bg); border-radius: 15px;
+  padding: 11px 20px 11px 17px; text-decoration: none; text-align: left;
+}
+.appstore:hover { color: var(--bg); transform: translateY(-2px); }
+.appstore svg { width: 26px; height: 26px; flex-shrink: 0; }
+.appstore > span { display: flex; flex-direction: column; }
+.appstore .sm { font-size: 11px; font-family: var(--display); font-weight: 500; opacity: .8; line-height: 1.2; }
+.appstore .lg { font-size: 18px; font-family: var(--display); font-weight: 700; line-height: 1.15; letter-spacing: -.01em; }
+
+/* ── Footer ── */
+footer {
+  margin-top: 56px; padding-top: 22px; border-top: 1px solid var(--rule);
+  color: var(--muted); font-size: 0.9rem;
+}
+footer .flinks { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-bottom: 14px; }
+footer .flinks a { font-family: var(--display); font-weight: 500; font-size: 0.92rem; text-decoration: none; }
+footer .fine { font-size: 0.82rem; line-height: 1.6; }
+
+code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.88em; background: var(--lav); padding: 2px 6px; border-radius: 6px; }
+
+@media (max-width: 560px) {
+  .sitebar .get { display: none; }
+  body { font-size: 16px; }
+}
