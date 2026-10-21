@@ -1,6 +1,6 @@
 # protonmob.com
 
-Static copy of the ProtonMob website, which used to be hosted on Framer.
+Static copy of the AiMakeHub website, which used to be hosted on Framer.
 Served by GitHub Pages at https://protonmob.com.
 
 - `_fc/`, `_fs/`, `_lottie/` — assets that lived on Framer's CDNs (framerusercontent.com, app.framerstatic.com, lottie.host)
